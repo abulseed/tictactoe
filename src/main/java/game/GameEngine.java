@@ -1,12 +1,8 @@
 package game;
 
-import java.io.Console;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import commands.Command;
-import exceptions.ValidationException;
 import player.Player;
 import state.StateMachine;
 import utils.Fields;

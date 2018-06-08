@@ -1,12 +1,11 @@
 package utils;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-import exceptions.*;
+import exceptions.ValidationException;
 
 public class GameConsole {
   private static Scanner sc;
