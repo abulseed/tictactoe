@@ -5,4 +5,7 @@ We want to bring the pen-and-paper game Tic-tac-toe to the digital age, but with
 ## Resources
 
 <https://sourcemaking.com/design_patterns/memento>
+
 <https://sourcemaking.com/design_patterns/command>
+
+<https://sourcemaking.com/design_patterns/singleton>
