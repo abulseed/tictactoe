@@ -6,7 +6,6 @@ import commands.Command;
 import commands.ICommand;
 import exceptions.ValidationException;
 import state.StateMachine;
-import utils.WeightedQuickUnionUF;
 
 public class Player implements ICommand {
   private ArrayList<Command> commands = new ArrayList<>();
