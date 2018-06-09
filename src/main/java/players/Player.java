@@ -25,27 +25,39 @@ public class Player implements ICommand {
 
   private int length;
 
-  public Player() {
-    this.length = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
+  public Player() throws Exception {
+    try {
+      this.length = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
 
-    for (int i = 0; i < length; i++) {
-      this.winningPaths.add(new HorizontalPath(i));
-      this.winningPaths.add(new VerticalPath(i));
+      for (int i = 0; i < length; i++) {
+        this.winningPaths.add(new HorizontalPath(i));
+        this.winningPaths.add(new VerticalPath(i));
+      }
+      this.winningPaths.add(new MajorDiagonalPath());
+      this.winningPaths.add(new MinorDiagonalPath());
+    } catch (Exception e) {
+      throw e;
     }
-    this.winningPaths.add(new MajorDiagonalPath());
-    this.winningPaths.add(new MinorDiagonalPath());
   }
 
-  public boolean didIWin() {
-    boolean winnerPath = this.winningPaths.stream().filter(path -> this.length == path.getCurrentSize()).findFirst()
-        .isPresent();
-    return winnerPath;
+  public boolean didIWin() throws Exception {
+    try {
+      boolean winnerPath = this.winningPaths.stream().filter(path -> this.length == path.getCurrentSize()).findFirst()
+          .isPresent();
+      return winnerPath;
+    } catch (Exception e) {
+      throw e;
+    }
   }
 
   @Override
-  public void execute(Command command) throws ValidationException {
-    this.addNewCommand(command);
-    StateMachine.getInstance().mutateState(command);
+  public void execute(Command command) throws Exception {
+    try {
+      this.addNewCommand(command);
+      StateMachine.getInstance().mutateState(command);
+    } catch (Exception e) {
+      throw e;
+    }
   }
 
   public List<IPath> getWinningPaths() {

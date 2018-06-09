@@ -10,11 +10,15 @@ public class Originator {
     this.state = new String[x][y];
   }
 
-  public void mutateState(Command command) throws ValidationException {
-    if (this.state[command.getxCoo()][command.getyCoo()] != null) {
-      throw new ValidationException("Place is already marked");
+  public void mutateState(Command command) throws Exception {
+    try {
+      if (this.state[command.getxCoo()][command.getyCoo()] != null) {
+        throw new ValidationException("Place is already marked");
+      }
+      this.state[command.getxCoo()][command.getyCoo()] = command.getMark();
+    } catch (Exception e) {
+      throw e;
     }
-    this.state[command.getxCoo()][command.getyCoo()] = command.getMark();
   }
 
   public Memento save() {

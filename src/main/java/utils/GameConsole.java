@@ -1,8 +1,6 @@
 package utils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import exceptions.ValidationException;
@@ -30,11 +28,6 @@ public class GameConsole {
 
   public static void showMessage(String msg) {
     System.out.println(msg);
-  }
-
-  public static String readString() throws IOException {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    return br.readLine();
   }
 
   public static int[] readCoordinates() throws IOException, ValidationException {

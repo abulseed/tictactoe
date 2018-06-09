@@ -1,8 +1,5 @@
 package paths;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import commands.Command;
 
 public class VerticalPath extends IPath {

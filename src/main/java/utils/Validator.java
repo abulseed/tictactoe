@@ -3,15 +3,16 @@ package utils;
 import exceptions.ValidationException;
 
 public class Validator {
-  private static int boardSize = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
+  private static int boardSize;
 
   public static int[] validate(String input) throws ValidationException {
-    String[] splitted = input.split(",");
-    if (splitted.length != 2) {
-      throw new ValidationException("Incorrect Input");
-    }
-
     try {
+      boardSize = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
+      String[] splitted = input.split(",");
+      if (splitted.length != 2) {
+        throw new ValidationException("Incorrect Input");
+      }
+
       int x = Integer.parseInt(splitted[0]);
       if (x >= Validator.boardSize) {
         throw new IndexOutOfBoundsException("X coordinate is out of boundry.");
