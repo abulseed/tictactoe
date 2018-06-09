@@ -4,6 +4,10 @@ We want to bring the pen-and-paper game Tic-tac-toe to the digital age, but with
 
 ## Resources
 
+<http://algs4.cs.princeton.edu/15uf>
+
+<https://en.wikipedia.org/wiki/Tic-tac-toe>
+
 <https://sourcemaking.com/design_patterns/memento>
 
 <https://sourcemaking.com/design_patterns/command>
