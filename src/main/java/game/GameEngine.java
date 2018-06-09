@@ -13,13 +13,11 @@ import utils.Props;
 public class GameEngine {
   protected StateMachine stateMachine;
   protected ArrayList<Player> players = new ArrayList<>();
-  protected Player currentPlayer = new Player();
   protected GameBoard gameBoard;
 
   public GameEngine() {
     this.stateMachine = StateMachine.getInstance();
     this.gameBoard = new GameBoard();
-    registerPlayers();
   }
 
   public void registerPlayers() {
@@ -45,19 +43,18 @@ public class GameEngine {
     GameConsole.showMessage("Welcome!");
     while (true) {
       for (Player player : players) {
-        this.currentPlayer = player;
         GameConsole.showMessage(player.getName() + ", Please enter your move:");
 
         while (true) {
           try {
             int[] coo = GameConsole.readCoordinates();
             int x = coo[0], y = coo[1];
-            Command command = new Command(x, y, this.currentPlayer.getMark());
-            this.currentPlayer.execute(command);
+            Command command = new Command(x, y, player.getMark());
+            player.execute(command);
             this.gameBoard.draw();
             Judge judge = new Judge();
-            if (judge.winner(this.currentPlayer)) {
-              GameConsole.showMessage("Congratulations " + this.currentPlayer.getName());
+            if (judge.winner(player)) {
+              GameConsole.showMessage("Congratulations " + player.getName());
               System.exit(0);
             }
             break;
