@@ -5,7 +5,6 @@ import java.util.List;
 
 import commands.Command;
 import commands.ICommand;
-import exceptions.ValidationException;
 import paths.HorizontalPath;
 import paths.IPath;
 import paths.MajorDiagonalPath;
