@@ -12,7 +12,7 @@ public class Props {
     Properties props = new Properties();
     FileInputStream in;
     try {
-      in = new FileInputStream("properties.txt");
+      in = new FileInputStream("config.properties");
       props.load(in);
     } catch (IOException e) {
       e.printStackTrace();

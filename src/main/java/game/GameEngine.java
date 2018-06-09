@@ -3,7 +3,8 @@ package game;
 import java.util.ArrayList;
 
 import commands.Command;
-import player.Player;
+import players.Judge;
+import players.Player;
 import state.StateMachine;
 import utils.Fields;
 import utils.GameConsole;
@@ -41,8 +42,8 @@ public class GameEngine {
 
   public void startGame() {
     GameConsole.openConsole();
+    GameConsole.showMessage("Welcome!");
     while (true) {
-      System.out.println("Welcome!");
       for (Player player : players) {
         this.currentPlayer = player;
         GameConsole.showMessage(player.getName() + ", Please enter your move:");
@@ -54,6 +55,11 @@ public class GameEngine {
             Command command = new Command(x, y, this.currentPlayer.getMark());
             this.currentPlayer.execute(command);
             this.gameBoard.draw();
+            Judge judge = new Judge();
+            if (judge.winner(this.currentPlayer)) {
+              GameConsole.showMessage("Congratulations " + this.currentPlayer.getName());
+              System.exit(0);
+            }
             break;
           } catch (Exception e) {
             GameConsole.showMessage(e.getMessage());

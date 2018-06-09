@@ -1,4 +1,4 @@
-package player;
+package players;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import commands.Command;
 import commands.ICommand;
 import exceptions.ValidationException;
 import state.StateMachine;
+import utils.WeightedQuickUnionUF;
 
 public class Player implements ICommand {
   private ArrayList<Command> commands = new ArrayList<>();
@@ -59,5 +60,4 @@ public class Player implements ICommand {
   public void setMark(String mark) {
     this.mark = mark;
   }
-
 }
