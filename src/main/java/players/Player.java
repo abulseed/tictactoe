@@ -16,8 +16,9 @@ import utils.Props;
 
 public class Player implements ICommand {
   private List<IPath> winningPaths = new ArrayList<>();
-
   private List<Command> commands = new ArrayList<>();
+
+  private StateMachine stateMachine;
 
   private String name;
   private String mark;
@@ -53,10 +54,14 @@ public class Player implements ICommand {
   public void execute(Command command) throws Exception {
     try {
       this.addNewCommand(command);
-      StateMachine.getInstance().mutateState(command);
+      this.stateMachine.mutateState(command);
     } catch (Exception e) {
       throw e;
     }
+  }
+
+  public void injectStateMachine(StateMachine stateMachine) {
+    this.stateMachine = stateMachine;
   }
 
   public List<IPath> getWinningPaths() {

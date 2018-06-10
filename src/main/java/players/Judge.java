@@ -3,10 +3,19 @@ package players;
 import paths.PathFinder;
 
 public class Judge {
+  private PathFinder pathFinder;
+
+  public Judge() {
+    this(new PathFinder());
+  }
+
+  public Judge(PathFinder pFinder) {
+    this.pathFinder = pFinder;
+  }
 
   public boolean winner(Player player) throws Exception {
     try {
-      PathFinder.locatePlayerMove(player);
+      this.pathFinder.locatePlayerMove(player);
       return this.isWinner(player);
     } catch (Exception e) {
       e.printStackTrace(System.out);

@@ -4,7 +4,8 @@ import commands.Command;
 import players.Player;
 
 public class PathFinder {
-  public static void locatePlayerMove(Player player) throws Exception {
+
+  public void locatePlayerMove(Player player) throws Exception {
     try {
       Command command = player.getLastCommand();
       player.getWinningPaths().stream().forEach(path -> {

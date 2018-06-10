@@ -6,33 +6,33 @@ import java.util.Scanner;
 import exceptions.ValidationException;
 
 public class GameConsole {
-  private static Scanner sc;
+  private Scanner sc;
 
   private GameConsole() {
     sc = new Scanner(System.in);
   }
 
   private static class GameConsoleHolder {
-    private static final void OPEN_CONSOLE() {
-      new GameConsole();
+    private static final GameConsole OPEN_CONSOLE() {
+      return new GameConsole();
     }
   }
 
-  public static void openConsole() {
-    GameConsoleHolder.OPEN_CONSOLE();
+  public static GameConsole openConsole() {
+    return GameConsoleHolder.OPEN_CONSOLE();
   }
 
-  public static void closeConsole() {
-    GameConsole.sc.close();
+  public void closeConsole() {
+    this.sc.close();
   }
 
-  public static void showMessage(String msg) {
+  public void showMessage(String msg) {
     System.out.println(msg);
   }
 
-  public static int[] readCoordinates() throws IOException, ValidationException {
+  public int[] readCoordinates() throws IOException, ValidationException {
     try {
-      String input = GameConsole.sc.nextLine();
+      String input = this.sc.nextLine();
       return Validator.validate(input);
     } catch (ValidationException nfe) {
       throw new ValidationException(nfe.getMessage());

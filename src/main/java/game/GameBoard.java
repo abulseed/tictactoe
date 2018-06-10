@@ -3,14 +3,13 @@ package game;
 import state.StateMachine;
 
 public class GameBoard {
-  private StateMachine stateMachine;
+  protected StateMachine stateMachine;
 
-  public GameBoard() throws Exception {
-    try {
-      this.stateMachine = StateMachine.getInstance();
-    } catch (Exception e) {
-      throw e;
-    }
+  public GameBoard() {
+  }
+
+  public void injectStateMachine(StateMachine state) {
+    this.stateMachine = state;
   }
 
   public void draw() throws Exception {

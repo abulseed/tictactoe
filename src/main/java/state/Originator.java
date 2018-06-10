@@ -2,12 +2,15 @@ package state;
 
 import commands.Command;
 import exceptions.ValidationException;
+import utils.Fields;
+import utils.Props;
 
 public class Originator {
-  private String state[][];
+  protected String state[][];
 
-  public Originator(int x, int y) {
-    this.state = new String[x][y];
+  public Originator() throws Exception {
+    int gridSize = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
+    this.state = new String[gridSize][gridSize];
   }
 
   public void mutateState(Command command) throws Exception {
@@ -22,10 +25,10 @@ public class Originator {
   }
 
   public Memento save() {
-    return new Memento(state);
+    return new Memento(this.state);
   }
 
   public void restore(Memento m) {
-    state = m.getState();
+    this.state = m.getState();
   }
 }
