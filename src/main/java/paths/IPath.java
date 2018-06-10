@@ -6,7 +6,7 @@ import java.util.List;
 import commands.Command;
 
 public abstract class IPath {
-  protected List<Command> commands;
+  private List<Command> commands;
 
   public abstract boolean checkJoiningCondition(Command command) throws Exception;
 

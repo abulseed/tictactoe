@@ -2,7 +2,7 @@ package exceptions;
 
 public class ValidationException extends Exception {
   private static final long serialVersionUID = -599643883444978205L;
-  protected String msg;
+  private String msg;
 
   public ValidationException(String msg) {
     super(msg);
