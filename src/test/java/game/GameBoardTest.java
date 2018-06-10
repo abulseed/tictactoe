@@ -1,16 +1,15 @@
 package game;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import commands.Command;
 import state.StateMachine;
 import utils.Fields;
 import utils.Props;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
-import org.junit.Before;
 
 public class GameBoardTest {
   private int size;
