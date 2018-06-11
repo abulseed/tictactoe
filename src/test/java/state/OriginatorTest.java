@@ -27,8 +27,8 @@ public class OriginatorTest {
 
     originator.mutateState(command);
 
-    assertEquals(originator.state[1][0], "X");
-    assertEquals(originator.state.length, this.size);
+    assertEquals("X", originator.state[1][0]);
+    assertEquals(this.size, originator.state.length);
   }
 
   @Test
@@ -42,6 +42,6 @@ public class OriginatorTest {
     when(mockMemento.getState()).thenReturn(state);
 
     originator.restore(mockMemento);
-    assertArrayEquals(originator.state, state);
+    assertArrayEquals(state, originator.state);
   }
 }

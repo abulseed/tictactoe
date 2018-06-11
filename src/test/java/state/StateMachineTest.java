@@ -29,6 +29,6 @@ public class StateMachineTest {
     Command mockCommand = new Command(0, 0, "X");
     stateMachine.mutateState(mockCommand);
 
-    assertEquals(stateMachine.getState()[0][0], "X");
+    assertEquals("X", stateMachine.getState()[0][0]);
   }
 }
