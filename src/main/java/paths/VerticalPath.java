@@ -15,4 +15,8 @@ public class VerticalPath extends IPath {
     int y = command.getyCoo();
     return this.localY == y;
   }
+
+  public int getLocalY() {
+    return this.localY;
+  }
 }

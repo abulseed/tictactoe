@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import commands.Command;
+import players.AbstractPlayer;
+import players.CPU;
 import players.Judge;
 import players.Player;
 import state.StateMachine;
@@ -12,22 +14,22 @@ import utils.GameConsole;
 import utils.Props;
 
 public class GameEngine {
-  private List<Player> players;
+  private List<AbstractPlayer> players;
   private GameBoard gameBoard;
   private GameConsole gameConsole;
   private Judge judge;
   private StateMachine stateMachine;
 
   public GameEngine() throws Exception {
-    this(new ArrayList<Player>());
+    this(new ArrayList<>());
   }
 
-  public GameEngine(List<Player> players) throws Exception {
+  public GameEngine(List<AbstractPlayer> players) throws Exception {
     this(new GameBoard(), GameConsole.openConsole(), new Judge(), StateMachine.getInstance(), players);
   }
 
-  public GameEngine(GameBoard gameBoard, GameConsole gameConsole, Judge judge, StateMachine state, List<Player> players)
-      throws Exception {
+  public GameEngine(GameBoard gameBoard, GameConsole gameConsole, Judge judge, StateMachine state,
+      List<AbstractPlayer> players) throws Exception {
     this.gameBoard = gameBoard;
     this.players = players;
     this.gameConsole = gameConsole;
@@ -47,14 +49,16 @@ public class GameEngine {
       player2.setMark(Props.readProp(Fields.P2));
       player2.injectStateMachine(this.stateMachine);
 
-      Player player3 = new Player();
-      player3.setName("CPU");
-      player3.setMark(Props.readProp(Fields.CPU));
-      player3.injectStateMachine(this.stateMachine);
+      CPU cpu = new CPU();
+      cpu.setName("CPU");
+      cpu.setMark(Props.readProp(Fields.CPU));
+      cpu.injectStateMachine(this.stateMachine);
+      cpu.injectHumanPlayer(player1);
+      cpu.injectHumanPlayer(player2);
 
       players.add(player1);
       players.add(player2);
-      players.add(player3);
+      players.add(cpu);
     } catch (Exception e) {
       throw e;
     }
@@ -65,18 +69,23 @@ public class GameEngine {
     try {
       this.gameConsole.showMessage("Welcome!");
       while (true) {
-        for (Player player : players) {
+        for (AbstractPlayer player : players) {
           this.gameConsole.showMessage(player.getName() + ", Please enter your move:");
 
           while (true) {
             try {
-              int[] coo = this.gameConsole.readCoordinates();
-              int x = coo[0], y = coo[1];
-              Command command = new Command(x, y, player.getMark());
-              player.execute(command);
+              if (player instanceof Player) {
+                int[] coo = this.gameConsole.readCoordinates();
+                int x = coo[0], y = coo[1];
+                Command command = new Command(x, y, player.getMark());
+                player.execute(command);
+              } else if (player instanceof CPU) {
+                this.gameConsole.showMessage("CPU is making a move");
+                ((CPU) player).makeAMove();
+              }
               this.gameBoard.draw();
 
-              if (this.judge.winner(player)) {
+              if (this.judge.locateCurrentPlayerMove(player)) {
                 this.gameConsole.showMessage("Congratulations " + player.getName());
                 return;
               }

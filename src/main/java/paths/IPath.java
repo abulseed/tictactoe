@@ -27,4 +27,8 @@ public abstract class IPath {
   public int getCurrentSize() {
     return this.commands.size();
   }
+
+  public List<Command> getCommands() {
+    return this.commands;
+  }
 }

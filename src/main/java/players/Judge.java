@@ -5,7 +5,7 @@ import paths.PathFinder;
 public class Judge {
   private PathFinder pathFinder;
 
-  public Judge() {
+  public Judge() throws Exception {
     this(new PathFinder());
   }
 
@@ -13,7 +13,7 @@ public class Judge {
     this.pathFinder = pFinder;
   }
 
-  public boolean winner(Player player) throws Exception {
+  public boolean locateCurrentPlayerMove(AbstractPlayer player) throws Exception {
     try {
       this.pathFinder.locatePlayerMove(player);
       return this.isWinner(player);
@@ -23,7 +23,7 @@ public class Judge {
     }
   }
 
-  public boolean isWinner(Player player) throws Exception {
+  public boolean isWinner(AbstractPlayer player) throws Exception {
     try {
       return player.didIWin();
     } catch (Exception e) {

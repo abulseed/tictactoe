@@ -15,4 +15,8 @@ public class HorizontalPath extends IPath {
     int x = command.getxCoo();
     return this.localX == x;
   }
+
+  public int getLocalX() {
+    return this.localX;
+  }
 }
