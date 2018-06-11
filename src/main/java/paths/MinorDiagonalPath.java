@@ -1,7 +1,6 @@
 package paths;
 
 import commands.Command;
-import utils.Fields;
 import utils.Props;
 
 public class MinorDiagonalPath extends IPath {
@@ -12,7 +11,7 @@ public class MinorDiagonalPath extends IPath {
   @Override
   public boolean checkJoiningCondition(Command command) throws Exception {
     try {
-      int length = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
+      int length = Props.readGridSize();
       int x = command.getxCoo(), y = command.getyCoo();
 
       for (int i = 0, j = length - 1; i < length; i++, j--) {

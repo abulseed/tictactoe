@@ -42,4 +42,16 @@ public class Props {
       throw e;
     }
   }
+
+  public static int readGridSize() throws Exception {
+    try {
+      int n = Integer.parseInt(Props.getProperties().getProperty(Fields.SIZE_OF_PLAYGROUND));
+      if (n < 3 || n > 10) {
+        throw new IndexOutOfBoundsException("Grid size is out of bounds");
+      }
+      return n;
+    } catch (Exception e) {
+      throw e;
+    }
+  }
 }

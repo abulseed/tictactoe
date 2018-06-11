@@ -7,7 +7,7 @@ public class Validator {
 
   public static int[] validate(String input) throws ValidationException {
     try {
-      boardSize = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
+      boardSize = Props.readGridSize();
       String[] splitted = input.split(",");
       if (splitted.length != 2) {
         throw new ValidationException("Incorrect Input");

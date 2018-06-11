@@ -3,13 +3,13 @@ package state;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import commands.Command;
-import utils.Fields;
 import utils.Props;
 
 public class OriginatorTest {
@@ -17,7 +17,7 @@ public class OriginatorTest {
 
   @Before
   public void setup() throws NumberFormatException, Exception {
-    this.size = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
+    this.size = Props.readGridSize();
   }
 
   @Test

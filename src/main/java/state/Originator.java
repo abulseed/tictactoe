@@ -2,14 +2,13 @@ package state;
 
 import commands.Command;
 import exceptions.ValidationException;
-import utils.Fields;
 import utils.Props;
 
 public class Originator {
   protected String state[][];
 
   public Originator() throws Exception {
-    int gridSize = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
+    int gridSize = Props.readGridSize();
     this.state = new String[gridSize][gridSize];
   }
 

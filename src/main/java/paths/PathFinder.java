@@ -7,7 +7,6 @@ import commands.Command;
 import players.AbstractPlayer;
 import players.CPU;
 import state.StateMachine;
-import utils.Fields;
 import utils.Props;
 
 public class PathFinder {
@@ -38,7 +37,7 @@ public class PathFinder {
   }
 
   public boolean navigatePath(CPU cpu, IPath path) throws Exception {
-    int length = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
+    int length = Props.readGridSize();
     if (path instanceof HorizontalPath) {
       int x = ((HorizontalPath) path).getLocalX();
       List<int[]> usedCoo = path.getCommands().stream()

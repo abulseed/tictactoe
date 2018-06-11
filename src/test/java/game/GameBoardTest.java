@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import commands.Command;
 import state.StateMachine;
-import utils.Fields;
 import utils.Props;
 
 public class GameBoardTest {
@@ -16,7 +15,7 @@ public class GameBoardTest {
 
   @Before
   public void setup() throws NumberFormatException, Exception {
-    this.size = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
+    this.size = Props.readGridSize();
   }
 
   @Test

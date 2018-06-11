@@ -10,7 +10,6 @@ import paths.MajorDiagonalPath;
 import paths.MinorDiagonalPath;
 import paths.VerticalPath;
 import state.StateMachine;
-import utils.Fields;
 import utils.Props;
 
 public abstract class AbstractPlayer {
@@ -27,7 +26,7 @@ public abstract class AbstractPlayer {
   public abstract void execute(Command command) throws Exception;
 
   public AbstractPlayer() throws Exception {
-    this.length = Integer.parseInt(Props.readProp(Fields.SIZE_OF_PLAYGROUND));
+    this.length = Props.readGridSize();
 
     for (int i = 0; i < length; i++) {
       this.winningPaths.add(new HorizontalPath(i));
