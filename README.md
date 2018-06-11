@@ -21,7 +21,7 @@ This application is built using VSCode. Use this [LINK](https://code.visualstudi
 
 #### Gradle
 
-1. Download & Install the package manager for wondows [Chocolatey](https://chocolatey.org/).
+1. Download & Install the package manager for windows [Chocolatey](https://chocolatey.org/).
 2. Use Chocolatey to install Gradle. `$ choco install gradle`.
 3. For other OS's check [HERE](https://gradle.org/install/#with-a-package-manager) how to install Gradle on your machine.
 
