@@ -31,12 +31,22 @@ This application is built using VSCode. Use this [LINK](https://code.visualstudi
 2. Make sure the build was successful and the app is ready to run using this command `gradle test`.
 3. Everything is set let's run the application using `gradle run`.
 
-## Resources
+## Application Design
 
-<https://en.wikipedia.org/wiki/Tic-tac-toe>
+### Brief
 
-<https://sourcemaking.com/design_patterns/memento>
+Due to the nature of my current role and working hours; I had to divide my time on building this application into 4 days. I tried to have a declarative commits that would imply the progress as I go. Below you can find the steps of the iterations I followed during development:
 
-<https://sourcemaking.com/design_patterns/command>
+1. Focusing on writing a designated component for each feature of the application.
+2. Make each feature work with the basic functionality.
+3. Write unit tests for the optimistic paths and start refactoring and enhancing the code.
 
-<https://sourcemaking.com/design_patterns/singleton>
+### Design patterns
+
+1. [Memento](https://sourcemaking.com/design_patterns/memento): Capture and externalize the application internal state so that it can be returned to this state later. It encapsulates a "check point" capability.
+2. [Singelton](https://sourcemaking.com/design_patterns/singleton): Ensure a class has only one instance, and provide a global point of access to it. Encapsulated "just-in-time initialization" or "initialization on first use".
+3. [Command](https://sourcemaking.com/design_patterns/command): Encapsulate a request as an object, thereby letting you parametrize clients with different requests, queue or log requests, and support undoable operations.
+
+### Computer Player
+
+As per the task description I gave the least priority for having a super smart CPU. I focused on implementing the ability to win/block if there is a chance as described [HERE](https://en.wikipedia.org/wiki/Tic-tac-toe).
