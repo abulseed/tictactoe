@@ -5,12 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import commands.Command;
-import paths.HorizontalPath;
 import paths.IPath;
-import paths.MajorDiagonalPath;
-import paths.MinorDiagonalPath;
 import paths.PathFinder;
-import paths.VerticalPath;
 
 public class CPU extends AbstractPlayer {
   protected List<Player> humanPlayers;
@@ -85,130 +81,6 @@ public class CPU extends AbstractPlayer {
         if (null == this.stateMachine.getState()[i][j]) {
           Command command = new Command(i, j, this.getMark());
           this.execute(command);
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  public boolean handleBlockingHumanPath(IPath humanPath) throws Exception {
-    if (humanPath instanceof HorizontalPath) {
-      int x = ((HorizontalPath) humanPath).getLocalX();
-      List<int[]> usedCoo = humanPath.getCommands().stream()
-          .map(command -> new int[] { command.getxCoo(), command.getyCoo() }).collect(Collectors.toList());
-      for (int i = 0; i < this.length; i++) {
-        final int target = i;
-        boolean usedByMe = usedCoo.stream().filter(coo -> target == coo[1]).findAny().isPresent();
-        if (!usedByMe && null == this.stateMachine.getState()[x][target]) {
-          Command cmd = new Command(x, target, this.getMark());
-          this.execute(cmd);
-          return true;
-        }
-      }
-    }
-
-    else if (humanPath instanceof VerticalPath) {
-      int y = ((VerticalPath) humanPath).getLocalY();
-      List<int[]> usedCoo = humanPath.getCommands().stream()
-          .map(command -> new int[] { command.getxCoo(), command.getyCoo() }).collect(Collectors.toList());
-      for (int i = 0; i < this.length; i++) {
-        final int target = i;
-        boolean usedByMe = usedCoo.stream().filter(coo -> target == coo[0]).findAny().isPresent();
-        if (!usedByMe && null == this.stateMachine.getState()[target][y]) {
-          Command cmd = new Command(target, y, this.getMark());
-          this.execute(cmd);
-          return true;
-        }
-      }
-    }
-
-    else if (humanPath instanceof MajorDiagonalPath) {
-      List<int[]> usedCoo = humanPath.getCommands().stream()
-          .map(command -> new int[] { command.getxCoo(), command.getyCoo() }).collect(Collectors.toList());
-      for (int i = 0; i < this.length; i++) {
-        final int target = i;
-        boolean usedByMe = usedCoo.stream().filter(coo -> target == coo[0] && target == coo[1]).findAny().isPresent();
-        if (!usedByMe && null == this.stateMachine.getState()[target][target]) {
-          Command cmd = new Command(target, target, this.getMark());
-          this.execute(cmd);
-          return true;
-        }
-      }
-    }
-
-    else if (humanPath instanceof MinorDiagonalPath) {
-      List<int[]> usedCoo = humanPath.getCommands().stream()
-          .map(command -> new int[] { command.getxCoo(), command.getyCoo() }).collect(Collectors.toList());
-      for (int i = 0, j = length - 1; i < length; i++, j--) {
-        final int targetX = i;
-        final int targetY = j;
-        boolean usedByMe = usedCoo.stream().filter(coo -> targetX == coo[0] && targetY == coo[1]).findAny().isPresent();
-        if (!usedByMe && null == this.stateMachine.getState()[targetX][targetY]) {
-          Command cmd = new Command(targetX, targetY, this.getMark());
-          this.execute(cmd);
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  public boolean handleWinningPath(IPath path) throws Exception {
-    if (path instanceof HorizontalPath) {
-      int x = ((HorizontalPath) path).getLocalX();
-      List<int[]> usedCoo = path.getCommands().stream()
-          .map(command -> new int[] { command.getxCoo(), command.getyCoo() }).collect(Collectors.toList());
-      for (int i = 0; i < this.length; i++) {
-        final int target = i;
-        boolean usedByMe = usedCoo.stream().filter(coo -> target == coo[1]).findAny().isPresent();
-        if (!usedByMe && null == this.stateMachine.getState()[x][target]) {
-          Command cmd = new Command(x, target, this.getMark());
-          this.execute(cmd);
-          return true;
-        }
-      }
-    }
-
-    else if (path instanceof VerticalPath) {
-      int y = ((VerticalPath) path).getLocalY();
-      List<int[]> usedCoo = path.getCommands().stream()
-          .map(command -> new int[] { command.getxCoo(), command.getyCoo() }).collect(Collectors.toList());
-      for (int i = 0; i < this.length; i++) {
-        final int target = i;
-        boolean usedByMe = usedCoo.stream().filter(coo -> target == coo[0]).findAny().isPresent();
-        if (!usedByMe && null == this.stateMachine.getState()[target][y]) {
-          Command cmd = new Command(target, y, this.getMark());
-          this.execute(cmd);
-          return true;
-        }
-      }
-    }
-
-    else if (path instanceof MajorDiagonalPath) {
-      List<int[]> usedCoo = path.getCommands().stream()
-          .map(command -> new int[] { command.getxCoo(), command.getyCoo() }).collect(Collectors.toList());
-      for (int i = 0; i < this.length; i++) {
-        final int target = i;
-        boolean usedByMe = usedCoo.stream().filter(coo -> target == coo[0] && target == coo[1]).findAny().isPresent();
-        if (!usedByMe && null == this.stateMachine.getState()[target][target]) {
-          Command cmd = new Command(target, target, this.getMark());
-          this.execute(cmd);
-          return true;
-        }
-      }
-    }
-
-    else if (path instanceof MinorDiagonalPath) {
-      List<int[]> usedCoo = path.getCommands().stream()
-          .map(command -> new int[] { command.getxCoo(), command.getyCoo() }).collect(Collectors.toList());
-      for (int i = 0, j = length - 1; i < length; i++, j--) {
-        final int targetX = i;
-        final int targetY = j;
-        boolean usedByMe = usedCoo.stream().filter(coo -> targetX == coo[0] && targetY == coo[1]).findAny().isPresent();
-        if (!usedByMe && null == this.stateMachine.getState()[targetX][targetY]) {
-          Command cmd = new Command(targetX, targetY, this.getMark());
-          this.execute(cmd);
           return true;
         }
       }
